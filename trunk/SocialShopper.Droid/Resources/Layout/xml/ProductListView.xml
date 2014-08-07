@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    >
+
+  <LinearLayout 
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent">
+
+    <Mvx.MvxListView
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_weight=".75"
+      local:MvxBind="ItemsSource Products; ItemClick NavigateTo"
+      local:MvxItemTemplate="@layout/item_product"
+    />
+    <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_weight=".25">
+      <Button
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="+"
+        local:MvxBind="Click AddNewProduct"
+    />
+
+      <Button
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="\?"
+        local:MvxBind="Click Filter"
+    />
+
+
+    </LinearLayout>
+  </LinearLayout>
+</ScrollView>

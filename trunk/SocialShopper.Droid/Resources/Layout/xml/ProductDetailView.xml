@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="none"
+    android:layout_weight="1">
+
+  <TableLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:stretchColumns="1">
+
+    <TableRow>
+      <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Product name:"/>
+
+      <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        local:MvxBind="Text Name"/>
+    </TableRow>
+    <TableRow>
+      <TextView
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="Product description:"
+   />
+
+      <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        local:MvxBind="Text Description"
+    />
+    </TableRow>
+    <TableRow>
+      <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Product codes:"
+   />
+
+      <Mvx.MvxListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="ItemsSource ProductCodes"
+        local:MvxItemTemplate="@layout/item_ihavevalue"
+      />
+
+
+    </TableRow>
+    <TableRow>
+      <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Scan code"
+        local:MvxBind="Click ShowScan"/>
+    </TableRow>
+
+    <TableRow>
+      <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Product categories:"
+   />
+
+      <Mvx.MvxListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        local:MvxBind="ItemsSource ProductCategories"
+        local:MvxItemTemplate="@layout/item_ihavename"
+      />
+
+    </TableRow>
+
+    <!--<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+    <Mvx.MvxListView
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_weight=".5"
+      local:MvxBind="ItemsSource Product.ProductCodes"
+      local:MvxItemTemplate="@layout/item_ihavename"
+      />
+
+    <Mvx.MvxListView
+      android:layout_width="fill_parent"
+      android:layout_height="0dp"
+      android:layout_weight=".5"
+      local:MvxBind="ItemsSource Product.ProductCategories"
+      local:MvxItemTemplate="@layout/item_ihavename"
+      />
+  </LinearLayout>-->
+  </TableLayout>
+</ScrollView>
