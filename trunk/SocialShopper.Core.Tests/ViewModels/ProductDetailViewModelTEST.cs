@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,16 +18,16 @@ using Cirrious.MvvmCross.Platform;
 
 namespace SocialShopper.Core.Tests.ViewModels
 {
+	[TestFixture]
+	public class ProductDetailViewModelTEST : TestBase
+	{
+		[Test]
+		public void cTor()
+		{
+			var testee = Ioc.Resolve<ProductDetailViewModel> ();
 
-    [TestFixture]
-    public class MenuViewModelTEST
-    {
-        [Test]
-        public void cTor()
-        {
-            var testee = new MenuViewModel();
-
-        }
-    }
+			Assert.IsNotNull (testee);
+		}
+	}
 
 }

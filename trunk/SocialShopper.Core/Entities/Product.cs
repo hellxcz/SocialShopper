@@ -16,9 +16,11 @@ namespace SocialShopper.Core.Entities
         [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<ProductCode> ProductCodes { get; set; }
 
+		[OneToMany(CascadeOperations = CascadeOperation.CascadeDelete | CascadeOperation.CascadeInsert)]
+		public List<ProductPrice> ProductPrices { get; set; }
+
         [ManyToMany(typeof(Product_ProductCategory))]
         public List<ProductCategory> ProductCategories { get; set; }
     
     }
-
 }

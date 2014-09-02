@@ -1,7 +1,6 @@
 namespace SocialShopper.Core.Services.Interface
 {
-    public interface IDataInitializerService
+	public interface IDataInitializerService : IHaveInit
     {
-        void Init();
     }
 }

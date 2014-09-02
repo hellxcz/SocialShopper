@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using SocialShopper.Core.Entities;
 using SocialShopper.Core.Services.Interface;
@@ -95,8 +96,23 @@ namespace SocialShopper.Core.Services
 						new ProductCode() {Value = "365"},
                         new ProductCode() {Value = "312"},
                     },
-                    Description = "some",
-                    Name = "Tatranky"
+					Description = @"some really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really looooong description",                    
+					Name = "Tatranky",
+					ProductPrices = new List<ProductPrice>
+					{
+						new ProductPrice() { Value = 10, CreationDate = DateTime.Now - TimeSpan.FromHours(1)},
+						new ProductPrice() { Value = 12, CreationDate = DateTime.Now - TimeSpan.FromHours(2)},
+						new ProductPrice() { Value =  9, CreationDate = DateTime.Now - TimeSpan.FromHours(3)},
+						new ProductPrice() { Value = 10, CreationDate = DateTime.Now - TimeSpan.FromHours(4)},
+						new ProductPrice() { Value = 11, CreationDate = DateTime.Now - TimeSpan.FromHours(5)},
+						new ProductPrice() { Value = 13, CreationDate = DateTime.Now - TimeSpan.FromHours(6)},
+						new ProductPrice() { Value = 14, CreationDate = DateTime.Now - TimeSpan.FromHours(7)},
+						new ProductPrice() { Value = 15, CreationDate = DateTime.Now - TimeSpan.FromHours(8)},
+						new ProductPrice() { Value = 20, CreationDate = DateTime.Now - TimeSpan.FromHours(9)},
+						new ProductPrice() { Value = 10, CreationDate = DateTime.Now - TimeSpan.FromHours(10)},
+						new ProductPrice() { Value =  8, CreationDate = DateTime.Now - TimeSpan.FromHours(11)},
+						new ProductPrice() { Value = 10, CreationDate = DateTime.Now },
+					}
                 },
                 new Product()
                 {

@@ -1,32 +1,34 @@
 using SocialShopper.Core.Services.Interface;
+using System.Collections.Generic;
 
 namespace SocialShopper.Core.Services
 {
     public class DataInitializerService : IDataInitializerService
     {
-        private readonly IProduct_ProductCategoryDataService _productProductCategoryDataService;
-        private readonly IProductCategoryDataService _productCategoryDataService;
-        private readonly IProductDataService _productDataService;
-        private readonly IProductCodeDataService _productCodeDataService;
+		private readonly IList<IHaveInit> ToInit;
 
         public DataInitializerService(
             IProduct_ProductCategoryDataService productProductCategoryDataService,
             IProductCategoryDataService productCategoryDataService,
             IProductDataService productDataService,
-            IProductCodeDataService productCodeDataService)
+            IProductCodeDataService productCodeDataService,
+			IProductPriceDataService productPriceDataService)
         {
-            _productProductCategoryDataService = productProductCategoryDataService;
-            _productCategoryDataService = productCategoryDataService;
-            _productDataService = productDataService;
-            _productCodeDataService = productCodeDataService;
+			ToInit = new List<IHaveInit> {
+				productProductCategoryDataService,
+				productCategoryDataService,
+				productDataService,
+				productCodeDataService,
+				productPriceDataService
+			};
         }
 
         public virtual void Init()
         {
-            _productProductCategoryDataService.Init();
-            _productCategoryDataService.Init();
-            _productDataService.Init();
-            _productCodeDataService.Init();
+			foreach (var item in ToInit) 
+			{
+				item.Init();
+			}
         }
     }
 }

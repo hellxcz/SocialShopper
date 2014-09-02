@@ -22,7 +22,7 @@ namespace SocialShopper.Droid.Views
             base.OnCreate(bundle);
             this.SetContentView(Resource.Layout.ProductDetailView);
 
-            BarCodeScanner.Context = this;
+            //BarCodeScanner.Context = this;
         }
     }
 }

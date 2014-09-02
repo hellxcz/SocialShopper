@@ -5,6 +5,9 @@ using SocialShopper.Core.Entities;
 using SocialShopper.Core.Services.Interface;
 using SocialShopper.Core.Messages;
 using Acr.MvvmCross.Plugins.BarCodeScanner;
+using System;
+using Cirrious.CrossCore;
+using System.Collections.Generic;
 
 namespace SocialShopper.Core.ViewModels
 {
@@ -15,8 +18,8 @@ namespace SocialShopper.Core.ViewModels
         private readonly IMvxMessenger _messenger;
 		private readonly IBarCodeScanner _scanner;
 
-        public INC<string> ProductCode = new NC<string>();
-        public INCList<Product> Products = new NCList<Product>();
+		public INC<string> ProductCode = new NC<string>();
+		public INCList<Product> Products = new NCList<Product>(new List<Product>()) ;
 
 
         public ProductSearchViewModel(
@@ -37,9 +40,25 @@ namespace SocialShopper.Core.ViewModels
         public void Search()
         {
             var productIds = _productCodeDataService.Filter(code => code.Value.Contains(ProductCode.Value))
-                .Select(code => code.ProductId);
+                .Select(code => code.ProductId).ToList();
 
-            Products.Value = _productDataService.GetByIds(productIds);
+            if (productIds.Count == 1)
+            {
+                var product = _productDataService.GetById(productIds.First());
+
+                NavigateTo(product);                
+            }
+            else if (productIds.Count == 0)
+            {
+                // product does not exists yet, should be created
+                // 
+
+                NavigateTo(ProductCode.Value);
+            }
+            else
+            {
+                Products.Value = _productDataService.GetByIds(productIds);
+            }
         }
 
 		public async void Scan()
@@ -48,7 +67,7 @@ namespace SocialShopper.Core.ViewModels
 			{
 				SuppressVisibleEvent = true;
 
-				//var scan = Mvx.Resolve<IBarCodeScanner>();
+				var _scanner = Mvx.Resolve<IBarCodeScanner>();
 
 				_scanner.Configuration.AutoRotate = false;
 
@@ -60,6 +79,13 @@ namespace SocialShopper.Core.ViewModels
 				}
 
 				ProductCode.Value = codeResult.Code;
+
+                Search();
+			}
+
+			catch(Exception e) 
+			{
+
 			}
 			finally
 			{
@@ -69,11 +95,23 @@ namespace SocialShopper.Core.ViewModels
 
         public void NavigateTo(Product product)
         {
-            ShowViewModel<ProductDetailViewModel>(
-                new ProductDetailViewModel.Message()
-                {
-                    ProductId = product.Id
-                });
+            NavigateTo(new ProductDetailViewModel.Message()
+            {
+                ProductId = product.Id
+            });
+        }
+
+        protected void NavigateTo(string productCode)
+        {
+            NavigateTo(new ProductDetailViewModel.Message()
+            {
+                ProductCode = productCode
+            });
+        }
+
+        protected void NavigateTo(ProductDetailViewModel.Message message)
+        {
+            ShowViewModel<ProductDetailViewModel>(message);
         }
 
         private void ProductChange(EntityMessage<Product> message)

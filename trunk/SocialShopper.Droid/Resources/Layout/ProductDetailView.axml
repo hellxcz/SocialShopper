@@ -11,45 +11,60 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Product name:" />
+            android:layout_weight="0.3"
+            android:text="name:" />
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.7"
             android:textSize="20dp"
             local:MvxBind="Text Name" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Product description:" />
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:textSize="20dp"
-            local:MvxBind="Text Description" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_weight="0.3"
         android:orientation="horizontal"
-        android:layout_weight="0.4"
         android:layout_height="0dp">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Product codes:" />
+            android:layout_weight="0.3"
+            android:text="description:" />
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7">
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                local:MvxBind="Text Description" />
+        </ScrollView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_weight="0.3"
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="codes:" />
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="+"
+                local:MvxBind="Click AddProductCode" />
+        </LinearLayout>
         <Mvx.MvxListView
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.7"
             local:MvxBind="ItemsSource ProductCodes"
             local:MvxItemTemplate="@layout/item_ihavevalue" />
     </LinearLayout>
@@ -57,16 +72,16 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:layout_weight="0.4">
+        android:layout_weight="0.2">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Product categories:" />
+            android:layout_weight="0.3"
+            android:text="categories:" />
         <Mvx.MvxListView
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.7"
             local:MvxBind="ItemsSource ProductCategories"
             local:MvxItemTemplate="@layout/item_ihavename" />
     </LinearLayout>

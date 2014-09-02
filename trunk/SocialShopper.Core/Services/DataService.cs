@@ -67,6 +67,14 @@ namespace SocialShopper.Core.Services
             }
         }
 
+		public virtual void UpdateWithChildren(IEnumerable<T> data)
+		{
+			foreach (var item in data) 
+			{
+				UpdateWithChildren (item);
+			}
+		}
+
         public virtual void InsertWithChildren(T data)
         {
             _connection.InsertWithChildren(data, recursive: true);

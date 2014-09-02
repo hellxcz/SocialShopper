@@ -12,5 +12,8 @@ namespace SocialShopper.Core.Entities
 
         [ForeignKey(typeof(Product))]
         public int ProductId { get; set; }
+
+		[ManyToOne]
+		public Product Product { get; set; }
     }
 }

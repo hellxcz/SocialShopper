@@ -7,16 +7,16 @@ using SocialShopper.Core.Entities.Interface;
 namespace SocialShopper.Core.Services.Interface
 {
     public interface IDataServiceBase<T>
+		: IHaveInit
         where T : class, new()
     {
-        void Init();
-        
         void Insert(T data);
         void Insert(IEnumerable<T> data);
         void InsertWithChildren(IEnumerable<T> data);
         void InsertWithChildren(T data);
         void Update(T data);
-        void UpdateWithChildren(T data);
+		void UpdateWithChildren(IEnumerable<T> data);
+		void UpdateWithChildren(T data);
         void Delete(T data);
         void DeleteAll();
         void DeleteAll(IEnumerable<T> data);

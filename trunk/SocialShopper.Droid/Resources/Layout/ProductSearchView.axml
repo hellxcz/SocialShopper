@@ -29,13 +29,14 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search"
-                local:MvxBind="Click Search" />
+                android:text="Scan"
+                local:MvxBind="Click Scan" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scan"
-                local:MvxBind="Click Scan" />
+                android:text="Search"
+                local:MvxBind="Click Search"
+                android:id="@+id/button1" />
         </LinearLayout>
         <Mvx.MvxListView
             android:layout_width="match_parent"

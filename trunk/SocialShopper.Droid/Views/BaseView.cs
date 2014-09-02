@@ -6,6 +6,7 @@
 
 using SocialShopper.Core.ViewModels;
 using SocialShopper.Core.ViewModels.Interface;
+using System;
 
 namespace SocialShopper.Droid.Views
 {
@@ -25,6 +26,11 @@ namespace SocialShopper.Droid.Views
         {
             get { return base.ViewModel as IKillable; }
         }
+
+		protected override void OnCreate (Android.OS.Bundle bundle)
+		{
+			base.OnCreate (bundle);
+		}
 
         protected override void OnResume()
         {

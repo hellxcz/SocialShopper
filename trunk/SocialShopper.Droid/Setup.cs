@@ -3,6 +3,10 @@
 //    Defines the Setup type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
+
 namespace SocialShopper.Droid
 {
     using Android.Content;

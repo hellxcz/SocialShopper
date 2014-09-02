@@ -31,6 +31,10 @@ namespace SocialShopper.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
+			CreatableTypes()
+				.EndingWith("PublisherService")
+				.AsInterfaces()
+				.RegisterAsLazySingleton();
 
             RegisterAppStart<ViewModels.MenuViewModel>();
 
