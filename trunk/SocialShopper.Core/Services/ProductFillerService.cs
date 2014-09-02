@@ -63,7 +63,7 @@ namespace SocialShopper.Core.Services
                 },
             };
 
-            _productCategoryDataService.Insert(productCategories);
+			_productCategoryDataService.Save(productCategories);
         }
 
         private void InitProducts()
@@ -83,19 +83,7 @@ namespace SocialShopper.Core.Services
                     {
                         new ProductCode() {Value = "123"},
                         new ProductCode() {Value = "321"},
-                        new ProductCode() {Value = "313"},
-                        new ProductCode() {Value = "324"},
-						new ProductCode() {Value = "327"},
-						new ProductCode() {Value = "328"},
-						new ProductCode() {Value = "329"},
-						new ProductCode() {Value = "330"},
-						new ProductCode() {Value = "331"},
-						new ProductCode() {Value = "332"},
-						new ProductCode() {Value = "343"},
-						new ProductCode() {Value = "354"},
-						new ProductCode() {Value = "365"},
-                        new ProductCode() {Value = "312"},
-                    },
+					},
 					Description = @"some really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really looooong description",                    
 					Name = "Tatranky",
 					ProductPrices = new List<ProductPrice>
@@ -146,7 +134,7 @@ namespace SocialShopper.Core.Services
                 },
             };
 
-            _productDataService.InsertWithChildren(products);
+            _productDataService.SaveWithChildren(products);
         }
     }
 }

@@ -10,14 +10,8 @@ namespace SocialShopper.Core.Services.Interface
 		: IHaveInit
         where T : class, new()
     {
-        void Insert(T data);
-        void Insert(IEnumerable<T> data);
-        void InsertWithChildren(IEnumerable<T> data);
-        void InsertWithChildren(T data);
-        void Update(T data);
-		void UpdateWithChildren(IEnumerable<T> data);
-		void UpdateWithChildren(T data);
-        void Delete(T data);
+
+		void Delete(T data);
         void DeleteAll();
         void DeleteAll(IEnumerable<T> data);
         IEnumerable<T> Filter(Func<T, bool> where);
@@ -32,5 +26,11 @@ namespace SocialShopper.Core.Services.Interface
         T GetById(I id);
         T GetByIdWithChildren(I id);
         IList<T> GetByIds(IEnumerable<I> ids);
+
+		void Save(T data);
+		void Save(IEnumerable<T> data);
+
+		void SaveWithChildren(T data);
+		void SaveWithChildren(IEnumerable<T> data);
     }
 }

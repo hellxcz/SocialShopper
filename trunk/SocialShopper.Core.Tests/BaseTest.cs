@@ -3,6 +3,17 @@
 //    Defines the BaseTest type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+using System.Collections.Generic;
+using Cirrious.CrossCore.IoC;
+using SocialShopper.Core.Services.Interface;
+using System;
+using Cirrious.MvvmCross.Community.Plugins.Sqlite;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using Cirrious.MvvmCross.Community.Plugins.Sqlite.Wpf;
+using Acr.MvvmCross.Plugins.BarCodeScanner;
+using Moq;
+
+
 namespace SocialShopper.Core.Tests
 {
     using Cirrious.CrossCore.Core;
@@ -24,6 +35,12 @@ namespace SocialShopper.Core.Tests
         /// </summary>
         private MockDispatcher mockDispatcher;
 
+		protected static IEnumerable<Type> CreatableTypes()
+		{
+			return MvxTypeExtensions.CreatableTypes(typeof(IDataInitializerService).Assembly);
+		}
+
+
         /// <summary>
         /// Sets up.
         /// </summary>
@@ -41,6 +58,20 @@ namespace SocialShopper.Core.Tests
 
             this.Initialize();
             this.CreateTestableObject();
+
+			// for navigation parsing
+			Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
+
+			Ioc.RegisterSingleton<ISQLiteConnectionFactory>(new MvxWpfSqLiteConnectionFactory());
+			Ioc.RegisterSingleton<IMvxMessenger>(new MvxMessengerHub());
+
+			var barcodeScannerMock = new Mock<IBarCodeScanner> ();
+
+			Ioc.RegisterSingleton<IBarCodeScanner>(barcodeScannerMock.Object);
+
+			SocialShopper.Core.App.InitializeServices(CreatableTypes);
+
+			SocialShopper.Core.App.InitializeData();
         }
 
         /// <summary>

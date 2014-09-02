@@ -59,7 +59,6 @@ namespace SocialShopper.Core.ViewModels
 					ProductId = product.Id
 				}
 			);
-
 		}
 
 //		public async void AddProductCode()
@@ -105,7 +104,7 @@ namespace SocialShopper.Core.ViewModels
 
                 FillProduct();
 
-                _productDataService.InsertWithChildren(product);
+                _productDataService.SaveWithChildren(product);
 
                 _mvxMessenger.Publish(new EntityMessage<Product>(this, product, EntityChangeEnum.Insert));
 
@@ -114,8 +113,8 @@ namespace SocialShopper.Core.ViewModels
 
             FillProduct();
 
-            _productDataService.UpdateWithChildren(product);
-			_productCodeDataService.UpdateWithChildren(ProductCodes.Value);
+            _productDataService.SaveWithChildren(product);
+			_productCodeDataService.Save(ProductCodes.Value);
 
             _mvxMessenger.Publish(new EntityMessage<Product>(this, product, EntityChangeEnum.Update));
         }

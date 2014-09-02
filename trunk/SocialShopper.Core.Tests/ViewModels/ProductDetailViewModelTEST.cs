@@ -15,16 +15,29 @@ using SocialShopper.Core.Tests.Mocks;
 using Cirrious.MvvmCross.Views;
 using Cirrious.CrossCore.Core;
 using Cirrious.MvvmCross.Platform;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using Acr.MvvmCross.Plugins.BarCodeScanner;
 
 namespace SocialShopper.Core.Tests.ViewModels
 {
 	[TestFixture]
-	public class ProductDetailViewModelTEST : TestBase
+	public class ProductDetailViewModelTEST : BaseTest
 	{
+		private ProductDetailViewModel GetTestee()
+		{
+			return new ProductDetailViewModel (
+				Ioc.Resolve<IMvxMessenger> (), 
+				Ioc.Resolve<IProductDataService> (), 
+				Ioc.Resolve<IProductCodeDataService> (), 
+				Ioc.Resolve<IBarCodeScanner> ());
+		}
+
 		[Test]
 		public void cTor()
 		{
-			var testee = Ioc.Resolve<ProductDetailViewModel> ();
+			base.Setup ();
+
+			var testee = GetTestee();
 
 			Assert.IsNotNull (testee);
 		}

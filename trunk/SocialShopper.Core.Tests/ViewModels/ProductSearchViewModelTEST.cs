@@ -23,7 +23,7 @@ namespace SocialShopper.Core.Tests.ViewModels
 
 
     [TestFixture]
-	public class ProductSearchViewModelTEST : TestBase
+	public class ProductSearchViewModelTEST : BaseTest
     {
         [SetUp]
         public void SetUp()

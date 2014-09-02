@@ -33,23 +33,8 @@ namespace SocialShopper.Core.Services
         {
             _connection.DeleteAll<T>();
         }
-
-        public virtual void Insert(T data)
-        {
-            _connection.Insert(data);
-        }
-
-        public virtual void Update(T data)
-        {
-            _connection.Update(data);
-        }
-
-        public virtual void UpdateWithChildren(T data)
-        {
-            _connection.UpdateWithChildren(data);
-        }
-
-        public virtual void Delete(T data)
+		       
+		public virtual void Delete(T data)
         {
             _connection.Delete(data);
         }
@@ -57,32 +42,6 @@ namespace SocialShopper.Core.Services
         public virtual void DeleteAll(IEnumerable<T> data)
         {
             _connection.DeleteAll(data);
-        }
-
-        public virtual void InsertWithChildren(IEnumerable<T> data)
-        {
-            foreach (T item in data)
-            {
-                InsertWithChildren(item);
-            }
-        }
-
-		public virtual void UpdateWithChildren(IEnumerable<T> data)
-		{
-			foreach (var item in data) 
-			{
-				UpdateWithChildren (item);
-			}
-		}
-
-        public virtual void InsertWithChildren(T data)
-        {
-            _connection.InsertWithChildren(data, recursive: true);
-        }
-
-        public virtual void Insert(IEnumerable<T> data)
-        {
-            _connection.InsertAll(data);
         }
 
         public virtual IEnumerable<T> Filter(System.Func<T, bool> where)
@@ -133,5 +92,44 @@ namespace SocialShopper.Core.Services
         {
             return _connection.GetWithChildren<T>(id, recursive: true);   
         }
+
+		public virtual void Save(T data)
+		{
+			if (default(I).Equals(data.Id))
+			{
+				_connection.Insert (data);
+				return;
+
+			}
+			_connection.Update(data);
+		}
+
+		public virtual void Save(IEnumerable<T> data)
+		{
+			foreach (T item in data)
+			{
+				Save(item);
+			}
+		}
+
+		public virtual void SaveWithChildren(IEnumerable<T> data)
+		{
+			foreach (T item in data)
+			{
+				SaveWithChildren(item);
+			}
+		}
+
+		public virtual void SaveWithChildren(T data)
+		{
+			if (default(I).Equals(data.Id))
+			{
+				_connection.InsertWithChildren(data, recursive: true);
+				return;
+			}
+
+			_connection.UpdateWithChildren (data);
+
+		}
     }
 }

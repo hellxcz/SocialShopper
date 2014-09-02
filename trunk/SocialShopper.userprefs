@@ -1,46 +1,58 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.8b7cb011" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SocialShopper.Core\Services\ProductFillerService.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.android-2.3-x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SocialShopper.Core.Tests\Services\ProductDataServiceTEST.cs">
     <Files>
-      <File FileName="SocialShopper.Core\ViewModels\ProductDetailViewModel.cs" Line="50" Column="50" />
-      <File FileName="SocialShopper.Core\ViewModels\ProductListViewModel.cs" Line="13" Column="13" />
-      <File FileName="SocialShopper.Droid\Setup.cs" Line="41" Column="41" />
-      <File FileName="SocialShopper.Core\Entities\ProductCode.cs" Line="2" Column="2" />
-      <File FileName="SocialShopper.Core\Entities\ProductPrice.cs" Line="1" Column="1" />
-      <File FileName="SocialShopper.Core\Entities\Product.cs" Line="23" Column="23" />
-      <File FileName="SocialShopper.Core\Services\ProductFillerService.cs" Line="41" Column="41" />
+      <File FileName="SocialShopper.Core.Tests\ViewModels\ProductDetailViewModelTEST.cs" Line="52" Column="52" />
+      <File FileName="SocialShopper.Core.Tests\ViewModels\ProductSearchViewModelTEST.cs" Line="52" Column="52" />
+      <File FileName="SocialShopper.Core.Tests\Services\ProductDataServiceTEST.cs" Line="32" Column="32" />
+      <File FileName="SocialShopper.Core\ViewModels\ProductDetailViewModel.cs" Line="2" Column="2" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="SocialShopper.Core" expanded="True">
-            <Node name="Entities" expanded="True">
-              <Node name="Interface" expanded="True" />
-            </Node>
+            <Node name="Services" expanded="True" />
+            <Node name="ViewModels" expanded="True" />
+          </Node>
+          <Node name="SocialShopper.Core.Tests" expanded="True">
             <Node name="Services" expanded="True">
-              <Node name="ProductFillerService.cs" selected="True" />
+              <Node name="ProductDataServiceTEST.cs" selected="True" />
             </Node>
             <Node name="ViewModels" expanded="True" />
           </Node>
           <Node name="SocialShopper.Droid" expanded="True">
-            <Node name="Resources" expanded="True">
-              <Node name="Layout" expanded="True" />
-            </Node>
+            <Node name="ComponentReferenceFolder" expanded="True" />
           </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="SocialShopper.Core.Tests" expanded="True">
+            <Node name="SocialShopper" expanded="True">
+              <Node name="Core" expanded="True">
+                <Node name="Tests" expanded="True">
+                  <Node name="Services" expanded="True">
+                    <Node name="ProductDataServiceTEST" expanded="True">
+                      <Node name="Get_First_Product" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="D:\dev\xamarin\SocialShopper\trunk\SocialShopper.Core.Tests\ViewModels\MenuViewModelTEST.cs" line="97" column="10" />
-      <Breakpoint file="D:\dev\xamarin\SocialShopper-git\SocialShopper\trunk\SocialShopper.Core\App.cs" line="53" column="1" />
-      <Breakpoint file="D:\dev\xamarin\SocialShopper-git\SocialShopper\trunk\SocialShopper.Core\ViewModels\ProductDetailViewModel.cs" line="99" column="37" />
-      <Breakpoint file="D:\dev\xamarin\SocialShopper-git\SocialShopper\trunk\SocialShopper.Core\ViewModels\ProductDetailViewModel.cs" line="109" column="29" />
-      <Breakpoint file="D:\dev\xamarin\SocialShopper-git\SocialShopper\trunk\SocialShopper.Core\ViewModels\ProductDetailViewModel.cs" line="113" column="1" />
+      <Breakpoint file="D:\dev\xamarin\SocialShopper-git\SocialShopper\trunk\SocialShopper.Core\App.cs" line="60" column="1" />
+      <Breakpoint file="D:\dev\xamarin\SocialShopper-git\SocialShopper\trunk\SocialShopper.Core\ViewModels\ProductDetailViewModel.cs" line="130" column="1" />
+      <Breakpoint file="D:\dev\xamarin\SocialShopper-git\SocialShopper\trunk\SocialShopper.Core\ViewModels\ProductListViewModel.cs" line="100" column="1" />
+      <Breakpoint file="D:\dev\xamarin\SocialShopper-git\SocialShopper\trunk\SocialShopper.Core\ViewModels\ProductDetailViewModel.cs" line="117" column="1" />
+      <Breakpoint file="D:\dev\xamarin\SocialShopper-git\SocialShopper\trunk\SocialShopper.Core.Tests\Services\ProductDataServiceTEST.cs" line="26" column="1" />
+      <Breakpoint file="d:\dev\xamarin\SocialShopper-git\SocialShopper\trunk\SocialShopper.Core.Tests\BaseTest.cs" line="49" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
