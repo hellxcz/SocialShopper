@@ -22,6 +22,32 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="current price:" />
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="+"
+                local:MvxBind="Click AddProductPrice" />
+        </LinearLayout>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:textSize="20dp"
+            local:MvxBind="Text CurrentProductPrice" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_weight="0.3"
         android:orientation="horizontal"
         android:layout_height="0dp">

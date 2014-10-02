@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 using System.Linq;
 using Acr.MvvmCross.Plugins.BarCodeScanner;
 using Cirrious.CrossCore;
@@ -10,6 +11,9 @@ using SocialShopper.Core.Entities;
 using SocialShopper.Core.Messages;
 using SocialShopper.Core.Services;
 using SocialShopper.Core.Services.Interface;
+using System.Threading.Tasks;
+using SocialShopper.Core.Core;
+using System.Collections.ObjectModel;
 
 namespace SocialShopper.Core.ViewModels
 {
@@ -31,10 +35,11 @@ namespace SocialShopper.Core.ViewModels
 
         public readonly INC<string> Name = new NC<string>("");
         public readonly INC<string> Description = new NC<string>("");
-        public readonly INCList<ProductCode> ProductCodes = new NCList<ProductCode>(); 
-        public readonly INCList<ProductCategory> ProductCategories = new NCList<ProductCategory>(); 
+		public ObservableCollection<ProductCode> ProductCodes;// = new MyNCList<ProductCode>(); 
+		public ObservableCollection<ProductCategory> ProductCategories;// = new MyNCList<ProductCategory>(); 
+		public ObservableCollection<ProductPrice> ProductPrices;
+		public readonly INC<float> CurrentProductPrice = new NC<float> (0);
 
-        
         public ProductDetailViewModel(
 			IMvxMessenger mvxMessenger, 
 			IProductDataService productDataService, 
@@ -46,19 +51,27 @@ namespace SocialShopper.Core.ViewModels
 			_productCodeDataService = productCodeDataService;
             _scanner = scanner;
 
-			ProductCodes.Value = new List<ProductCode>();
-			ProductCategories.Value = new List<ProductCategory>();
+			ProductCodes = new ObservableCollection<ProductCode>();
+			ProductCategories = new ObservableCollection<ProductCategory>();
+			ProductPrices = new ObservableCollection<ProductPrice> ();
+
+			//CurrentProductPrice.Changed += CurrentProductPrice_Changed;
+
         }
+
+		public void AddProductPrice()
+		{
+			ProductPrices.Add (new ProductPrice (){ CreationDate = DateTime.Now, Value = CurrentProductPrice.Value });
+		}
 
 		public void AddProductCode()
 		{
-			ProductCodes.Value.Add(
-				new ProductCode()
-				{
-					Value = "new codeee",
-					ProductId = product.Id
-				}
-			);
+			var productCode = new ProductCode () {
+				Value = "new codeee",
+				ProductId = product != null ? product.Id : 0
+			};
+
+			ProductCodes.Add (productCode);
 		}
 
 //		public async void AddProductCode()
@@ -76,10 +89,11 @@ namespace SocialShopper.Core.ViewModels
 //                    return;
 //                }
 //
-//				ProductCodes.Value.Add(
+//				ProductCodes.Add(
 //					new ProductCode()
 //					{
-//						Value = codeResult.Code
+//						Value = codeResult.Code,
+//						ProductId = product.Id
 //					}
 //				);
 //            }
@@ -99,8 +113,9 @@ namespace SocialShopper.Core.ViewModels
             if (product == null)
             {
                 product = new Product();
-				product.ProductCodes = ProductCodes.Value.ToList();
-				product.ProductCategories = ProductCategories.Value.ToList();
+				product.ProductCodes = ProductCodes.ToList();
+				product.ProductCategories = ProductCategories.ToList();
+				product.ProductPrices = ProductPrices.ToList ();
 
                 FillProduct();
 
@@ -114,7 +129,7 @@ namespace SocialShopper.Core.ViewModels
             FillProduct();
 
             _productDataService.SaveWithChildren(product);
-			_productCodeDataService.Save(ProductCodes.Value);
+			_productCodeDataService.Save(ProductCodes);
 
             _mvxMessenger.Publish(new EntityMessage<Product>(this, product, EntityChangeEnum.Update));
         }
@@ -134,9 +149,9 @@ namespace SocialShopper.Core.ViewModels
 
             if (!string.IsNullOrEmpty(message.ProductCode))
             {
-                ProductCodes.Value = new List<ProductCode>();
+				ProductCodes = new ObservableCollection<ProductCode>();
 
-                ProductCodes.Value.Add(
+                ProductCodes.Add(
                     new ProductCode()
                     {
                         Value = message.ProductCode
@@ -154,8 +169,10 @@ namespace SocialShopper.Core.ViewModels
 
             Name.Value = product.Name;
             Description.Value = product.Description;
-            ProductCodes.Value = product.ProductCodes;
-            ProductCategories.Value = product.ProductCategories;
+			ProductCodes = new ObservableCollection<ProductCode> (product.ProductCodes);
+			ProductCategories = new ObservableCollection<ProductCategory>(product.ProductCategories);
+			ProductPrices = new ObservableCollection<ProductPrice> (product.ProductPrices);
+			CurrentProductPrice.Value = product.ProductPrices.LastOrDefault ().Value;
         }
     }
 }

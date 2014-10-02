@@ -73,6 +73,12 @@
     <Reference Include="Acr.MvvmCross.Plugins.BarCodeScanner">
       <HintPath>..\packages\Acr.MvvmCross.Plugins.BarCodeScanner.1.3.0\lib\portable-win+net45+MonoAndroid+MonoTouch+sl50+wp8\Acr.MvvmCross.Plugins.BarCodeScanner.dll</HintPath>
     </Reference>
+    <Reference Include="Cirrious.MvvmCross.FieldBinding">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.FieldBinding.3.1.1\lib\net45\Cirrious.MvvmCross.FieldBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.FieldBinding">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.FieldBinding.3.1.1\lib\net45\Cirrious.MvvmCross.Plugins.FieldBinding.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
@@ -84,6 +90,7 @@
     <Compile Include="ViewModels\ProductDetailViewModelTEST.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Services\ProductDataServiceTEST.cs" />
+    <Compile Include="Bootstrap\FieldBindingPluginBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SocialShopper.Core\SocialShopper.Core.csproj">

@@ -78,6 +78,7 @@
     <Compile Include="Services\Interface\IProductPriceDataService.cs" />
     <Compile Include="Services\ProductPriceDataService.cs" />
     <Compile Include="Services\Interface\IHaveInit.cs" />
+    <Compile Include="Core\ObservableCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -149,4 +150,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Core\" />
+  </ItemGroup>
 </Project>

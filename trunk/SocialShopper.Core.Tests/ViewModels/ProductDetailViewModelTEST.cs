@@ -17,6 +17,7 @@ using Cirrious.CrossCore.Core;
 using Cirrious.MvvmCross.Platform;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using Acr.MvvmCross.Plugins.BarCodeScanner;
+using Cirrious.MvvmCross.FieldBinding;
 
 namespace SocialShopper.Core.Tests.ViewModels
 {
@@ -35,11 +36,53 @@ namespace SocialShopper.Core.Tests.ViewModels
 		[Test]
 		public void cTor()
 		{
-			base.Setup ();
-
 			var testee = GetTestee();
 
 			Assert.IsNotNull (testee);
+		}
+
+		[Test]
+		public void Product_Codes_Changed()
+		{
+			var testee = GetTestee ();
+
+			var hadChanged = false;
+
+			testee.ProductCodes.CollectionChanged += (s, o) =>
+			{
+				var some = s;
+				hadChanged = true;
+			};
+
+
+			testee.ProductCodes
+				.Add (
+					new SocialShopper.Core.Entities.ProductCode ()
+					{ 
+						Value = "new value" }
+				);
+
+			//((NotifyChange)testee.ProductCodes.).RaiseChanged ();
+
+			Assert.IsTrue (hadChanged);
+
+		}
+
+		[Test]
+		public void ProductCodes_AddProductCode_RaisesChanged()
+		{
+			var testee = GetTestee ();
+
+			var hadChanged = false;
+
+			testee.ProductCodes.CollectionChanged += (sender, e) => {
+				hadChanged = true;
+			};
+
+			testee.AddProductCode ();
+
+			Assert.IsTrue (hadChanged);
+
 		}
 	}
 
